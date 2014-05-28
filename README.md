@@ -7,8 +7,11 @@ Version 0.1 Alpha
 
 ## Requirements
 
-Requires any bean factory that supports getBean.
+Railo3+ / CF9+
 
+## Dependancies
+
+None, but using a beanfactory that supports getBean is recommended.
 
 ## Usage
 
@@ -16,6 +19,16 @@ You can register custom events and listeners when your application starts up, or
 Listeners will be called in the order that they are specified.
 
 ### Instantiation
+
+Instantiation as a standalone.
+
+```
+// create the EventDispatcher which has a dependancy on a beanFactory
+var EventDispatcher = new libraries.EventDispatcher.EventDispatcher();
+
+````
+
+Instantiation when using a BeanFactory (recommended)
 
 ```
 // create the EventDispatcher which has a dependancy on a beanFactory
@@ -27,15 +40,34 @@ Beanfactory.addBean('EventDispatcher', EventDispatcher);
 
 ### Adding Event Listeners
 
+#### Signature:
+
+```
+addEventListener(required string type, required any listener) : void
+```
+
 You can create any event name and specify one or more listeners. For example if I wanted to fire a 'OrderPlaced' event
 which would notify my MailService I can do this:
+
+```
+// Notify the MailService when the 'OrderPlaced' event occurs
+MailService = new MailService();
+EventDispatcher.addEventListener('OrderPlaced', MailService);
+```
+
+If you are using a beanfactory then you can also add listeners by name (which is then loaded from the BeanFactory).
+Note that you will probably want to inject the EventDispatcher into your model or controller via DI.
+
 
 ```
 // Notify the MailService when the 'OrderPlaced' event occurs
 EventDispatcher.addEventListener('OrderPlaced', 'MailService');
 ```
 
-To trigger that event I would do:
+
+### Triggering events
+
+To trigger the above event I would do:
 
 ```
 // trigger the OrderPlaced event
@@ -46,7 +78,8 @@ EventDispatcher.dispatchEvent('OrderPlaced', {orderid=123});
 EventDispatcher.dispatchEvent('OrderPlaced', Order);
 ```
 
-The above example will call the `OrderPlaced` method of the `MailService` object (which is loaded from the BeanFactory)
+The above example will call the `OrderPlaced` method of the `MailService` object.
+
 
 As your application grows you will find that you want to trigger events in multiple listeners. For example:
 
@@ -76,4 +109,35 @@ EventDispatcher.addEventListener('OrderPlaced', ['MailService', StockManager]);
 
 As mentioned above, listeners are called in sequential order. If the called method returns false, then the
 loop will break at that point and subsequent listeners in the queue will not be notified.
+
+
+#### Extension points
+
+A `getEventMap` method is also provided as an extension point.
+
+```
+getEventMap([string type]) : struct;
+```
+
+
+#### Removing Event Listeners
+
+You can remove an eventListener by calling the `removeEventListener` method.
+
+```
+// add listener by name
+EventDispatcher.addEventListener('OrderPlaced', 'MailService');
+
+// remove listener by name
+EventDispatcher.removeEventListener('OrderPlaced', 'MailService');
+
+
+// add listener as object
+MailService = new MailService();
+EventDispatcher.addEventListener('OrderPlaced', MailService);
+
+// remove listener as object
+EventDispatcher.removeEventListener('OrderPlaced', MailService);
+
+```
 

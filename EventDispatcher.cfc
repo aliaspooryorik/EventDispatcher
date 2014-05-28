@@ -54,7 +54,16 @@ component accessors="true" {
 				}
 			}
 		}
-		return local.continue;
+	}
+
+	void function removeEventListener(required string type, required any listener) {
+		arguments.type = ucase(arguments.type);
+		if (hasListeners(arguments.type)) {
+			local.index = arrayfind(variables.events[arguments.type], arguments.listener);
+			if (local.index) {
+				arraydeleteat(variables.events[arguments.type], local.index);
+			}
+		}
 	}
 
 	struct function getEventMap(string type) {

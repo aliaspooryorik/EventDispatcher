@@ -1,0 +1,7 @@
+language: java
+env:
+  matrix:
+    - PLATFORM=railo40
+
+install: ant -Dsource=remote -Dwork.dir=$HOME/work -Dbuild.dir=$TRAVIS_BUILD_DIR -Dplatform=$PLATFORM install-ci-deps
+script: ant -Dsource=remote -Dwork.dir=$HOME/work -Dbuild.dir=$TRAVIS_BUILD_DIR -Dplatform=$PLATFORM test-ci

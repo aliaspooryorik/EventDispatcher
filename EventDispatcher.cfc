@@ -66,7 +66,7 @@ component accessors="true" {
 		}
 	}
 
-	struct function getEventMap(string type) {
+	any function getEventMap(string type) {
 		if (structkeyexists(arguments, "type")) {
 			return variables.events[arguments.type];
 		}

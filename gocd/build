@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# sudo /etc/init.d/go-server start
+# sudo /etc/init.d/go-agent start
+
+
+echo "Let's building something today ... "
+cd gocd/
+echo $PWD
+
+# rm server.json
+# rm box.json
+
+# git fetch --prune
+# git checkout master -f
+# git reset origin/master --hard
+
+echo "Branch updated to latest and greatest ... "
+
+box install
+
+box server set name=mwahhh
+box server set app.cfengine=lucee@4.5 openbrowser=false web.http.port=8080
+box server set web.webroot=../
+
+# box install testbox
+
+box server start
+
+box server show
+
+#count=0
+#while [ "$count" -lt 10 ]; do
+    #count=$((count + 1))
+
+    #color_code=$((31 + (count % 7)))
+    #printf "\e[01;${color_code}mBuilding [$count of 20]\e[00m\n"
+
+    #sleep 1
+#done
+
+echo "I am here 38"
+
+result=$(box testbox run runner=http://127.0.0.1:8080/tests/unittests/testbox-runner.cfm)
+
+
+echo "result: ${result}"
+echo "I am here 42"
+
+box stop
+
+rm server.json

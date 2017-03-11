@@ -4,7 +4,7 @@ _____         _   ____
    | |  __/\__ \ |_| |_) | (_) >  < 
    |_|\___||___/\__|____/ \___/_/\_\ v2.4.0+80
 =============================================================                                    
-Global Stats (369 ms)
+Global Stats (343 ms)
 =============================================================
 ->[Bundles/Suites/Specs: 1/1/14]
 ->[Pass: 13]
@@ -13,7 +13,7 @@ Global Stats (369 ms)
 ->[Skipped: 0]
 ->[Labels Applied: ]
 =============================================================
-tests.unittests.EventDispatcherTest (206 ms)
+tests.unittests.EventDispatcherTest (189 ms)
 =============================================================
 ->[Suites/Specs: 1/14]
 ->[Pass: 13]
@@ -23,33 +23,33 @@ tests.unittests.EventDispatcherTest (206 ms)
 (!)tests.unittests.EventDispatcherTest 
     (+)test_addEventListener_adds_listeners_to_internal_array (17 ms) 
 	
-    (+)test_removeEventListener_removes_listener_by_object (6 ms) 
+    (+)test_removeEventListener_removes_listener_by_object (7 ms) 
 	
-    (+)test_removeEventListener_does_not_remove_listener_for_different_event_by_object (11 ms) 
+    (+)test_removeEventListener_does_not_remove_listener_for_different_event_by_object (10 ms) 
 	
     (+)test_dispatchEvent_calls_the_listener_method_with_no_message (15 ms) 
 	
-    (+)test_addEventListener_adds_listeners_as_array (5 ms) 
+    (+)test_addEventListener_adds_listeners_as_array (6 ms) 
 	
-    (+)test_removeEventListener_does_not_remove_listener_for_different_event_by_name (1 ms) 
+    (+)test_removeEventListener_does_not_remove_listener_for_different_event_by_name (2 ms) 
 	
     (+)test_addEventListener_adds_listener_by_name (1 ms) 
 	
-    (+)test_dispatchEvent_breaks_loop_when_called_listener_returns_false (14 ms) 
+    (+)test_dispatchEvent_breaks_loop_when_called_listener_returns_false (13 ms) 
 	
-    (!)test_removeEventListener_removes_listener_by_name (21 ms) 
-	-> Failure: should be an empty array. Expected [[]] Actual [[abc]]
+    (!)test_removeEventListener_removes_listener_by_name (22 ms) 
+	-> Failure: should be an empty array. Expected [[]] Actual [[123]]
 	
 	
-    (+)test_dispatchEvent_calls_beanfactory_to_get_named_beans (25 ms) 
+    (+)test_dispatchEvent_calls_beanfactory_to_get_named_beans (22 ms) 
 	
-    (+)test_dispatchEvent_calls_each_listener (13 ms) 
+    (+)test_dispatchEvent_calls_each_listener (11 ms) 
 	
-    (+)test_dispatchEvent_calls_the_listener_method_with_simple_message (13 ms) 
+    (+)test_dispatchEvent_calls_the_listener_method_with_simple_message (11 ms) 
 	
     (+)test_addEventListener_adds_listener_by_object (4 ms) 
 	
-    (+)test_dispatchEvent_calls_the_listener_method_with_complex_message (15 ms) 
+    (+)test_dispatchEvent_calls_the_listener_method_with_complex_message (12 ms) 
 	
 	
 =============================================================

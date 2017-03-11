@@ -42,11 +42,12 @@ box server show
 echo "I am here 38"
 
 result=$(box testbox run runner=http://127.0.0.1:8080/tests/unittests/testbox-runner.cfm)
-
-
+exitcode=$?
 echo "result: ${result}"
 echo "I am here 42"
+echo "exit code : ${exitcode}"
 
 box stop
 
 rm server.json
+exit $exitcode

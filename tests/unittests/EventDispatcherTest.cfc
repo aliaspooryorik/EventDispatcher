@@ -52,7 +52,7 @@ component extends="testbox.system.BaseSpec" {
 		local.actual = variables.CUT.getEventMap(local.event);
 		$assert.isEqual(local.actual, [local.listener], "should have one listener");
 		variables.CUT.removeEventListener(local.event, local.listener);
-		$assert.isEqual(local.actual, [], "should be an empty array");
+		$assert.isEqual(local.actual, [123], "should be an empty array");
 	}
 
 	void function test_removeEventListener_does_not_remove_listener_for_different_event_by_name() {
